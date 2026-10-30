@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#101010">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="THE NAME">
+<meta name="mobile-web-app-capable" content="yes">
+
+<title>THE NAME</title>
+<link rel="manifest" href="manifest.json">
+<style>
+body {
+    background: #0d0d0d;
+    color: #eeeeee;
+    font-family: sans-serif;
+    margin: 0;
+    text-align: center;
+}
+header {
+    padding: 24px;
+    font-size: 22px;
+    font-weight: bold;
+    border-bottom: 1px solid #333;
+}
+main {
+    padding: 20px;
+}
+button {
+    background: #303030;
+    color: white;
+    border: 1px solid #555;
+    padding: 14px 24px;
+    border-radius: 6px;
+    font-size: 16px;
+}
+</style>
+
+<style id="mobile-game-style">
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 20px 14px 40px;
+    background: #101010;
+    color: #f5f5f5;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+h1 {
+    font-size: 28px;
+    margin: 20px 0 28px;
+}
+
+input[type="text"] {
+    width: 65%;
+    max-width: 280px;
+    padding: 12px;
+    background: #222;
+    color: white;
+    border: 1px solid #555;
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+button {
+    background: #303030;
+    color: white;
+    border: 1px solid #666;
+    border-radius: 6px;
+    padding: 12px 16px;
+    margin: 5px 2px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+button:active {
+    background: #555;
+}
+
+#characterList > div {
+    background: #1c1c1c;
+    border: 1px solid #444;
+    border-radius: 10px;
+    padding: 18px 10px;
+    margin: 16px auto;
+    max-width: 450px;
+}
+
+#characterList h3 {
+    font-size: 22px;
+    margin: 8px 0;
+}
+
+.enhance-timer {
+    font-size: 14px;
+    margin-top: 12px;
+}
+</style>
+
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+</head>
+<body>
+<header>THE NAME</header>
+<main>
+    <h3>강화할 이름을 입력하세요</h3>
+
+    <input id="nameInput"
+           type="text"
+           maxlength="20"
+           placeholder="이름 입력"
+           style="width:90%;padding:15px;background:#222;color:white;border:1px solid #555;">
+
+    <br><br>
+
+    <button onclick="createCharacter()">
+        이름 생성
+    </button>
+
+    <p>보유 슬롯: <span id="slotCount">0 / 5</span></p>
+
+    <div id="characterList"></div>
+</main>
+<script src="game.js"></script>
+
+<div style="text-align:center; margin:20px 0;">
+    <button id="hallButton" type="button">
+        🏆 명예의 전당
+    </button>
+</div>
+
+
+<div style="text-align:center; margin:15px 0;">
+    <button id="backupButton" type="button"
+        onclick="exportGameData()">
+        💾 데이터 백업
+    </button>
+</div>
+
+
+<div style="text-align:center; margin:15px 0;">
+    <input
+        type="file"
+        id="restoreFile"
+        accept=".json,application/json"
+        style="display:none;"
+        onchange="importGameData(this.files[0]); this.value='';"
+    >
+
+    <button type="button"
+        onclick="document.getElementById('restoreFile').click()">
+        📂 데이터 복원
+    </button>
+</div>
+
+
+
+
+
+<div style="text-align:center; margin:20px 0;">
+    <button
+        id="resetButton"
+        type="button"
+        onclick="resetGameData()"
+        style="background:#333;color:#ff7777;border:1px solid #777;padding:12px 20px;"
+    >
+        🗑️ 데이터 초기화
+    </button>
+</div>
+
+</body>
+</html>
